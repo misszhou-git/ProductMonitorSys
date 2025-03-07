@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="ProductMonitorSys.UserControls.MonitorUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProductMonitorSys.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--第一行-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding Timestr}" Foreground="White" FontSize="30" VerticalAlignment="Center"></TextBlock>
+            <StackPanel Margin="15,0,0,0">
+                <TextBlock Text="{Binding Datestr}" Foreground="White" FontSize="10"></TextBlock>
+                <TextBlock Text="{Binding Daystr}" Foreground="White" FontSize="10" HorizontalAlignment="Right"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+       <!--数字统计-->
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <!--自定义循环模板-->
+            <StackPanel.Resources>
+                <DataTemplate x:Key="machineCount">
+                    <Border Width="15" Background="#3318aabd" Margin="2,0">
+                        <TextBlock Text="2" Foreground="white" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate x:Key="productCount">
+                    <Border Width="15" Background="#3318aabd" Margin="2,0">
+                        <TextBlock Text="2" Foreground="white" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Border>
+                </DataTemplate>
+                <DataTemplate x:Key="badCount">
+                    <Border Width="15" Background="#3318aabd" Margin="2,0">
+                        <TextBlock Text="2" Foreground="white" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Border>
+                </DataTemplate>
+            </StackPanel.Resources>
+            <!--机台总数-->
+            <TextBlock Text="机台&#13;总数" Foreground="#99ffffff"  Margin="10,0" VerticalAlignment="Center" FontSize="10"></TextBlock>
+            <ItemsControl ItemsSource="{Binding BadCount}" ItemTemplate="{StaticResource badCount}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <!--生产计数-->
+            <TextBlock Text="生产计数" Foreground="#99ffffff"  Margin="10,0" VerticalAlignment="Center" FontSize="10"></TextBlock>
+            <ItemsControl ItemsSource="{Binding ProductCount}" ItemTemplate="{StaticResource productCount}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+                <!--不良计数-->
+            <TextBlock Text="不良计数" Foreground="#99ffffff"  Margin="10,0" VerticalAlignment="Center" FontSize="10"></TextBlock>
+            <ItemsControl ItemsSource="{Binding BadCount}" ItemTemplate="{StaticResource badCount}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+        <!--配置按钮-->
+        <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Grid.Column="1" Width="80" Height="35" VerticalAlignment="Center" Margin="20,0" Content="配置" Tag="&#xe7b7;"></Button>
+      
+
+        <!--第二行-->
+        <!--第三行-->
+
+    </Grid>
+</UserControl>
